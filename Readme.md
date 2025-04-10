@@ -28,8 +28,6 @@ The application follows a modular architecture with specialized components for e
 
 ### Components and Workflow
 
-![Architecture Diagram](https://via.placeholder.com/800x400?text=Financial+News+Sentiment+Analysis+Architecture)
-
 1. **News Retrieval (`NewsRetriever` class)**
    - Fetches company news from Finnhub API
    - Handles rate limiting with exponential backoff
@@ -80,17 +78,17 @@ The application follows a modular architecture with specialized components for e
    FINNHUB_API_KEY=your_finnhub_api_key_here
    ```
 
-3. **Build the Docker image**
+4. **Build the Docker image**
    ```bash
    docker build -t financial-sentiment-api .
    ```
 
-4. **Run the Docker container**
+5. **Run the Docker container**
    ```bash
    docker run -d -p 8000:8000 --env-file .env --name financial-sentiment financial-sentiment-api
    ```
 
-5. **Access the API**
+6. **Access the API**
    - API documentation: http://localhost:8000/docs
    - Sentiment endpoint: http://localhost:8000/sentiment?ticker=AAPL&days=7
 
