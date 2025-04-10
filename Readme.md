@@ -165,7 +165,8 @@ financial-news-sentiment-api/
 ├── main.py               # Main application file with all components and API
 ├── Dockerfile            # Docker configuration
 ├── requirements.txt      # Python dependencies
-├── .env                  # Environment variables (API keys) - not in repo
+├── .env                  # Environment variables (API keys) - Ideally shouldn't be here but I kept it for faster testing for you.
+├── AAPL_news.csv         # Apple's sample news data
 └── README.md             # Project documentation
 ```
 
