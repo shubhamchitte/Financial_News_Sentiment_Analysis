@@ -1,0 +1,11 @@
+ipykernel
+requests
+pandas
+bs4
+python-dotenv
+finnhub-python
+nltk
+transformers
+torch 
+fastapi
+uvicorn
