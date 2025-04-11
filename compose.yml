@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  api:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: financial_sentiment_api
+    container_name: financial_sentiment_api
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./:/app
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

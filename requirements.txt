@@ -5,6 +5,7 @@ python-dotenv
 finnhub-python
 nltk
 transformers
-torch==2.0.1
 fastapi
 uvicorn
+torch==2.1.0
+numpy==1.26.4

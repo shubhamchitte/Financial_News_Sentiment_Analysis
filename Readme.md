@@ -66,7 +66,7 @@ The application follows a modular architecture with specialized components for e
 ## Setup and Installation
 
 ### Option 1: Using Docker (Recommended)
-
+##### Note: Please have atleast 15 GBs free space in our DockerData root folder for huge deep learning modules like Torch.
 1. **Clone the repository**
    ```bash
    git clone https://github.com/yourusername/financial-news-sentiment-api.git
@@ -78,17 +78,16 @@ The application follows a modular architecture with specialized components for e
    FINNHUB_API_KEY=your_finnhub_api_key_here
    ```
 
-4. **Build the Docker image**
+4. **Build the Docker image and Run the container through compose.yml**
    ```bash
-   docker build -t financial-sentiment-api .
+   docker-compose up --build > app_logs.log 2>&1
    ```
+This also save build logs.
+This process will take quite some time based on your internet speed as we are doinloading large modules like torch. It is recommended to have around 15 GBs of space in you DockerData root folder.
+Once, auto-generated app_logs.log file shows following logs, our endpoint will be ready.
+financial_sentiment_api  | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 
-5. **Run the Docker container**
-   ```bash
-   docker run -d -p 8000:8000 --env-file .env --name financial-sentiment financial-sentiment-api
-   ```
-
-6. **Access the API**
+5. **Access the API**
    - API documentation: http://localhost:8000/docs
    - Sentiment endpoint: http://localhost:8000/sentiment?ticker=AAPL&days=7
 
@@ -107,16 +106,15 @@ The application follows a modular architecture with specialized components for e
    pip install -r requirements.txt
    ```
 
-3. **Download NLTK data**
-   ```bash
-   python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"
-   ```
-
-4. **Create a `.env` file with your Finnhub API key**
+3. **Create a `.env` file with your Finnhub API key**
    ```
    FINNHUB_API_KEY=your_finnhub_api_key_here
    ```
-
+4. **Uncomment following part in main.py at line**
+   ```python
+   if __name__ == "__main__":
+   uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)
+   ```
 5. **Run the application**
    ```bash
    python main.py
@@ -178,10 +176,9 @@ For a production environment, the following improvements could be considered:
 2. **Caching**: Implement Redis caching to reduce API calls and improve response time
 3. **Database Storage**: Store historical sentiment data for trend analysis
 4. **Testing**: Add unit and integration tests for each component
-5. **Error Handling**: Enhance error handling and reporting
-6. **Authentication**: Add API authentication for secure access
-7. **Monitoring**: Implement logging and monitoring for production use
-8. **CI/CD Pipeline**: Set up automated testing and deployment
+5. **Authentication**: Add API authentication for secure access
+6. **Monitoring**: Implement logging and monitoring for production use
+7. **CI/CD Pipeline**: Set up automated testing and deployment
 
 ## Dependencies
 
@@ -189,10 +186,9 @@ The project relies on the following key libraries:
 - **FastAPI**: Web framework for building APIs
 - **Finnhub-python**: Client for accessing Finnhub financial data
 - **Hugging Face Transformers**: For accessing pre-trained sentiment models
+- **Torch**: For running finetuned LLM. We are using CPU support only
 - **NLTK**: For text preprocessing and tokenization
 - **Pandas**: For data manipulation and analysis
+- **Numpy**: Required for Tranformers and Torch
 - **Uvicorn**: ASGI server to run the FastAPI application
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.

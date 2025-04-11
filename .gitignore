@@ -1,3 +1,4 @@
 __pycache__/
 .myenv/
 assignment.ipynb
+app_logs.log

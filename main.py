@@ -38,7 +38,7 @@ FINNHUB_API_KEY = os.getenv("FINNHUB_API_KEY")
 
 # Download NLTK resources
 nltk.download('punkt', quiet=True)
-# nltk.download('punkt_tab', quiet=True)
+nltk.download('punkt_tab', quiet=True)
 nltk.download('stopwords', quiet=True)
 
 
@@ -380,5 +380,5 @@ def get_sentiment(
         )
 
 
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)
+# if __name__ == "__main__":
+#     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)
